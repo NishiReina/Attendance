@@ -1,0 +1,37 @@
+.auth{
+    height: calc(100vh - 60rem);
+    padding: 50rem 0;
+}
+
+.auth__headline{
+    text-align: center;
+    font-size: 24rem;
+    margin-bottom: 40rem;
+}
+
+.auth__form{
+    width: 600rem;
+    margin: 0 auto;
+}
+
+.auth__label{
+    display: block;
+    margin-bottom: 8rem;
+}
+
+.auth__input{
+    display: block;
+    width: 100%;
+    height: 45px;
+    padding: 0 10rem;
+    margin-bottom: 40rem;
+}
+
+.auth__input--register{
+    margin-bottom: 30rem;
+}
+
+.auth__error{
+    color: #ff0000;
+    margin-top: 10rem;
+}
