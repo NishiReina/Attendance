@@ -23,3 +23,6 @@ down:
 cache:
 	docker-compose exec php php artisan cache:clear 
 	docker-compose exec php php artisan config:cache 
+
+exec:
+	docker-compose exec php bash

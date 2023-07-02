@@ -37,6 +37,7 @@
     <label for="password_confirmation" class="auth__label">確認用パスワード</label>
     <input id="password_confirmation" type="password" name="password_confirmation" class="auth__input auth__input--register"/>
     <button class="btn" >登録する</button>
+    <a href="/login" class="auth__link">ログインはこちら</a>
 </form>
 
 </div>

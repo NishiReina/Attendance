@@ -10,6 +10,7 @@ html{
 
 body{
     font-size: 16rem;
+    background-color: #F0EFF2;
 }
 
 img{
@@ -19,6 +20,12 @@ img{
 .flex_row_space-between{
     display: flex;
     justify-content: space-between;
+    align-items: center;
+}
+
+.flex_row_space-around{
+    display: flex;
+    justify-content: space-around;
     align-items: center;
 }
 

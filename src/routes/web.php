@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\AttendanceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,7 @@ Route::prefix('admin')->group(function () {
     });
 });
 
-Route::middleware(['auth:web', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::middleware(['auth:web', 'verified'])->group(function () {
+    Route::get('home', [AdminController::class, 'index']);
+    Route::get('/attendance', [AttendanceController::class, 'top']);
+});

@@ -1,0 +1,26 @@
+.attendance{
+    width: 600rem;
+    height: calc(100vh - 60rem);
+    margin: 0 auto;
+    padding: 50rem 0;
+}
+
+.date{
+    font-size: 24rem;
+    font-weight: normal;
+    text-align: center;
+}
+
+.time{
+    font-size: 32rem;
+    text-align: center;
+}
+
+.btn{
+    width: 100rem;
+}
+
+.btn--white{
+    background-color: #fff;
+    color: #000;
+}
