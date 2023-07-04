@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Attendance;
-
+use DateTime;
 
 class AttendanceController extends Controller
 {
@@ -19,5 +19,16 @@ class AttendanceController extends Controller
         $status = Attendance::attendanceStatus();
         // dd($status["status"]);
         return view('attendance', compact('date', 'time', 'status'));
+    }
+
+    public function start(){
+        $now = Carbon::now();
+        Attendance::create([
+            "date" => $now->isoFormat("Y-M-D"),
+            "start_time" => $now,
+            "user_id" => Auth::id()
+        ]);
+
+        return redirect("/attendance");
     }
 }

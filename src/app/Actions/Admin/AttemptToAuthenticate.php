@@ -106,11 +106,11 @@ class AttemptToAuthenticate
      * @return void
      */
     // 消してない
-    protected function fireFailedEvent($request)
-    {
-        event(new Failed(config('fortify.guard'), null, [
-            Fortify::username() => $request->{Fortify::username()},
-            'password' => $request->password,
-        ]));
-    }
+    // protected function fireFailedEvent($request)
+    // {
+    //     event(new Failed(config('fortify.guard'), null, [
+    //         Fortify::username() => $request->{Fortify::username()},
+    //         'password' => $request->password,
+    //     ]));
+    // }
 }
