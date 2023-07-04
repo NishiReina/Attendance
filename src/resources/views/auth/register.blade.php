@@ -7,7 +7,7 @@
 @endpush
 
 @section('content')
-<div class="auth">
+<div class="auth flex_column_center">
 
 <h1 class="auth__headline">会員登録</h1>
 
@@ -37,8 +37,8 @@
     <label for="password_confirmation" class="auth__label">確認用パスワード</label>
     <input id="password_confirmation" type="password" name="password_confirmation" class="auth__input auth__input--register"/>
     <button class="btn" >登録する</button>
-    <a href="/login" class="auth__link">ログインはこちら</a>
 </form>
+<a href="/login" class="auth__link">ログインはこちら</a>
 
 </div>
 @endsection

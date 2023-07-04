@@ -33,6 +33,7 @@
     @enderror
     <button class="btn" >ログイン</button>
 </form>
+<a href="/register" class="auth__link">新規登録はこちら</a>
 
 </div>
 @endsection

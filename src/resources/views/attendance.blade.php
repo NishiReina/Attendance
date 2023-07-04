@@ -8,7 +8,17 @@
 
 @section('content')
 <div class="attendance flex_column_center">
-    <div class="attendance__status flex_row_space-between"></div>
+    <div class="attendance__status flex_row_space-between">
+        @if($status["status"] == "non_work")
+            <p class="status">勤務外</p>
+        @elseif($status["status"] == "at_work")
+            <p class="status">出勤中</p>
+        @elseif($status["status"] == "rest")
+            <p class="status">休憩中</p>
+        @else
+            <p class="status">退勤済</p>
+        @endif
+    </div>
     <h2 class="date">{{$date}}</h2>
     <h1 class="time">{{$time}}</h1>
     <div class="flex__attendance flex_row_space-around">

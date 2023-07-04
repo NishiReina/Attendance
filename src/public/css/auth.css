@@ -1,6 +1,6 @@
 .auth{
-    height: calc(100vh - 60rem);
-    padding: 50rem 0;
+    height: 100vh;
+    padding: 100rem 0;
 }
 
 .auth__headline{
@@ -34,4 +34,9 @@
 .auth__error{
     color: #ff0000;
     margin-top: 10rem;
+}
+
+.auth__link{
+    color: #0073CC;
+    margin-top: 15rem;
 }
