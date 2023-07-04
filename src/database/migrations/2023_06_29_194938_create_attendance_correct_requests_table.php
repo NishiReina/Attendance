@@ -17,10 +17,10 @@ class CreateAttendanceCorrectRequestsTable extends Migration
             $table->id();
             $table->boolean('status')->default(false);    
             $table->string('reason');    
-            $table->time('start_time')->nullable();
-            $table->time('end_time')->nullable();
-            $table->time('rest_start_time')->nullable();
-            $table->time('rest_end_time')->nullable();
+            $table->dateTime('start_time')->nullable();
+            $table->dateTime('end_time')->nullable();
+            $table->dateTime('rest_start_time')->nullable();
+            $table->dateTime('rest_end_time')->nullable();
             $table->unsignedBigInteger('attendance_id')->unique();
             $table->foreign('attendance_id')->references('id')->on('attendances');
             $table->timestamps();

@@ -39,7 +39,8 @@ class Attendance extends Model
             $rest = $attendance->rests()->latest()->first();
             if (empty($rest)){
                 return [
-                    "status" => "rest",
+                    "status" => "at_work",
+                    "key" => $attendance->id
                 ];
             }else if(is_null($rest->end_time)){
                 return [
