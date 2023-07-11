@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title' ,'管理画面ホーム')
+@section('title' ,'打刻画面')
 
 @push('css')
 <link rel="stylesheet" type="text/css" href="{{ asset('css/attendance.css')}}">

@@ -68,4 +68,21 @@ class Attendance extends Model
         ];
 
     }
+
+    public static function getMonthAttendanceList($user_id, $ymd){
+
+        $month_attendances = array();
+        for($i = 1; $i <= $ymd->daysInMonth; $i++){
+            $date = Carbon::createMidnightDate($ymd->year, $ymd->month, $i);
+            $attendance = Attendance::with('user')->where('user_id',$user_id)->whereDate('created_at', $date)->first();
+            if($attendance){
+                $month_attendances[$i] = $attendance;
+            }else{
+                $month_attendances[$i] = "";
+            }
+        }
+
+        return $month_attendances;
+    }
+
 }

@@ -63,4 +63,18 @@ class AttendanceController extends Controller
 
         return redirect("/attendance");
     }
+
+    public function getAttendanceList(Request $request){
+
+        if(isset($request->month)){
+            $ymd = Carbon::createMidnightDate($request->month, null, 1);
+        }else{
+            $ymd = Carbon::now()->startOfMonth();
+        }
+        $days = $ymd->daysInMonth;
+        $attendances = Attendance::getMonthAttendanceList(Auth::id(), $ymd);
+        
+        return view('attendance_list', compact('ymd', 'attendances'));
+    }
+
 }
