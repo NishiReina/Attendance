@@ -75,7 +75,7 @@ class Attendance extends Model
         for($i = 1; $i <= $ymd->daysInMonth; $i++){
             $date = Carbon::createMidnightDate($ymd->year, $ymd->month, $i);
             $attendance = Attendance::with('user')->where('user_id',$user_id)->whereDate('created_at', $date)->first();
-            if($attendance){
+            if(isset($attendance) && isset($attendance->end_time)){
                 $month_attendances[$i] = $attendance;
             }else{
                 $month_attendances[$i] = "";
@@ -83,6 +83,40 @@ class Attendance extends Model
         }
 
         return $month_attendances;
+    }
+
+    public function sumWorkingHours(){
+        $rest_time = $this->sumRestTime();
+        $start = new Carbon($this->start_time);
+        $end = new Carbon($this->end_time);
+        $sum = $start->diffInSeconds($end);
+        $sum = $sum - $rest_time;
+        return $sum;
+        
+    }
+
+    public function sumRestTime(){
+        $rests = $this->rests;
+        $sum = 0;
+        if(isset($rests)){
+            foreach($rests as $rest){
+                $start = new Carbon($rest->start_time);
+                $end = new Carbon($rest->end_time);
+                $diff = $start->diffInSeconds($end);
+                $sum += $diff;
+            }
+        }else{
+            return 0;
+        }
+        return $sum;
+    }
+
+    public static function formatTime($total_seconds){
+        $hours = floor($total_seconds / 3600);
+        $minutes = floor(($total_seconds % 3600) / 60);
+        $seconds = $total_seconds % 60;
+        $result = sprintf("%02d:%02d:%02d", $hours, $minutes, $seconds);
+        return $result;
     }
 
 }
