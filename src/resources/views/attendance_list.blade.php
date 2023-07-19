@@ -33,8 +33,8 @@
             <td class="attendances_td"></td>
             <td class="attendances_td"><a href=""></a></td>
             @else
-            <td class="attendances_td">{{ \Carbon\Carbon::createFromTimeString($attendance->start_time)->format("H:i:s")}}</td>
-            <td class="attendances_td">{{ \Carbon\Carbon::createFromTimeString($attendance->end_time)->format("H:i:s")}}</td>
+            <td class="attendances_td">{{ MyFunc::time_format($attendance->start_time)}}</td>
+            <td class="attendances_td">{{ MyFunc::time_format($attendance->end_time)}}</td>
             <td class="attendances_td">{{ \App\Models\Attendance::formatTime($attendance->sumRestTime()) }}</td>
             <td class="attendances_td">{{ \App\Models\Attendance::formatTime($attendance->sumWorkingHours())}}</td>
             <td class="attendances_td"><a href="/attendance/{{$attendance->id}}">詳細</a></td>

@@ -37,5 +37,6 @@ Route::middleware(['auth:web', 'verified'])->group(function () {
     Route::post('/attendance/rest_start/{id}', [AttendanceController::class, 'startRest']);
     Route::post('/attendance/rest_end/{rest}', [AttendanceController::class, 'endRest']);
     Route::get('/attendance/list',[AttendanceController::class, 'getAttendancesList']);
-    Route::get('/attendance/{$attendance}',[AttendanceController::class, 'getAttendance']);
+    Route::get('/attendance/{attendance}',[AttendanceController::class, 'getAttendance']);
+    Route::post('/attendance/{attendance}',[AttendanceController::class, 'stampCorrection']);
 });

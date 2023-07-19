@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StampCorrectionRequest;
 use App\Models\Attendance;
+use App\Models\AttendanceCorrectRequest;
 use App\Models\Rest;
-use DateTime;
 
 class AttendanceController extends Controller
 {
@@ -77,8 +78,45 @@ class AttendanceController extends Controller
         return view('attendance_list', compact('ymd', 'attendances'));
     }
 
-    public function getAttendance($attendance){
-        return view('', compact('attendance'));
+    public function getAttendance(Attendance $attendance){
+        return view('detail', compact('attendance'));
+    }
+
+    public function StampCorrection(Attendance $attendance, StampCorrectionRequest $request){
+       
+
+        $str_start_time = $attendance->date . ' ' . $request->start_time;
+        $start_time = new Carbon($str_start_time);
+        $str_end_time = $attendance->date . ' ' . $request->end_time;
+        $end_time = new Carbon($str_end_time);
+
+        $data = [
+            'start_time' => $start_time,
+            'end_time' => $end_time,
+            'reason' => $request->reason
+        ];
+
+
+        if(isset($request->rest_start_time)){
+            $str_rest_start_time = $attendance->date . ' ' . $request->rest_start_time;
+            $rest_start_time = new Carbon($str_rest_start_time);
+            $str_rest_start_time = $attendance->date . ' ' . $request->rest_start_time;
+            $rest_start_time = new Carbon($str_rest_start_time);
+
+        }else{
+
+        }
+        // restsの申請用テーブルも作成する？
+        AttendanceCorrectRequest::create([
+            'start_time' => $request->start_time,
+            'end_time' => $request->end_time,
+            'rest_start_time' => $request->rest_start_time,
+            'rest_end_time' => $request->rest_end_time,
+            'reason' => $request->reason,
+            'attendance_id' => $attendance->id
+        ]);
+        
+        return redirect('/attendance/{{$attendance->id}}');
     }
 
 }

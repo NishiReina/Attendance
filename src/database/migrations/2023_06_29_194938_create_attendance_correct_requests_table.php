@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAttendanceCorrectRequestsTable extends Migration
+class CreateStampCorrectionRequestsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateAttendanceCorrectRequestsTable extends Migration
      */
     public function up()
     {
-        Schema::create('attendance_correct_requests', function (Blueprint $table) {
+        Schema::create('stamp_correction_requests', function (Blueprint $table) {
             $table->id();
             $table->boolean('status')->default(false);    
             $table->string('reason');    
@@ -34,6 +34,6 @@ class CreateAttendanceCorrectRequestsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('attendance_correct_requests');
+        Schema::dropIfExists('stamp_correction_requests');
     }
 }
