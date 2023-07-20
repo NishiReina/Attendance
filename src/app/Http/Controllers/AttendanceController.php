@@ -84,7 +84,9 @@ class AttendanceController extends Controller
 
     public function StampCorrection(Attendance $attendance, StampCorrectionRequest $request){
        
-
+        // $validated = $request->validated();
+        // dd($request->all());
+        
         $str_start_time = $attendance->date . ' ' . $request->start_time;
         $start_time = new Carbon($str_start_time);
         $str_end_time = $attendance->date . ' ' . $request->end_time;
@@ -115,7 +117,7 @@ class AttendanceController extends Controller
             'reason' => $request->reason,
             'attendance_id' => $attendance->id
         ]);
-        
+
         return redirect('/attendance/{{$attendance->id}}');
     }
 

@@ -20,7 +20,7 @@
             </tr>
             <tr class="detail__tr">
                 <th class="detail__th">日付</th>
-                <td class="detail__td">{{MyFunc::date_format($attendance->date)}}</td>
+                <td class="detail__td"><input name="date" type="date" value="{{$attendance->date}}" readonly></td>
             </tr>
             <tr class="detail__tr">
                 <th class="detail__th">勤務時間</th>
@@ -30,15 +30,15 @@
             @if(empty($attendance->rests[0]))
                 <tr class="detail__tr">
                     <th class="detail__th">休憩</th>
-                    <td class="detail__td"><input name="rest_start_time" type="time"></td>
-                    <td class="detail__td"><input name="rest_end_time" type="time"></td>
+                    <td class="detail__td"><input name="rest_start_time1" type="time"></td>
+                    <td class="detail__td"><input name="rest_end_time1" type="time"></td>
                 </tr>
             @else
                 @for($i=1; $i <= count($attendance->rests); $i++)
                 <tr class="detail__tr">
                     <th class="detail__th">休憩{{$i}}</th>
-                    <td class="detail__td"><input name="rest_start_time_{{$i}}" type="time" value="{{MyFunc::time_format($attendance->rests[$i-1]->start_time)}}"></td>
-                    <td class="detail__td"><input name="rest_end_time_{{$i}}" type="time" value="{{MyFunc::time_format($attendance->rests[$i-1]->end_time)}}"></td>
+                    <td class="detail__td"><input name="rest_start_time{{$i}}" type="time" value="{{MyFunc::time_format($attendance->rests[$i-1]->start_time)}}"></td>
+                    <td class="detail__td"><input name="rest_end_time{{$i}}" type="time" value="{{MyFunc::time_format($attendance->rests[$i-1]->end_time)}}"></td>
                 </tr>
                 @endfor
             @endif
