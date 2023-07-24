@@ -9,6 +9,7 @@ use App\Http\Requests\StampCorrectionRequest;
 use App\Models\Attendance;
 use App\Models\AttendanceCorrectRequest;
 use App\Models\Rest;
+use App\Models\RestRequest;
 
 class AttendanceController extends Controller
 {
@@ -92,33 +93,39 @@ class AttendanceController extends Controller
         $str_end_time = $attendance->date . ' ' . $request->end_time;
         $end_time = new Carbon($str_end_time);
 
-        $data = [
+        $attendance_correct_request = AttendanceCorrectRequest::create([
             'start_time' => $start_time,
             'end_time' => $end_time,
-            'reason' => $request->reason
-        ];
-
-
-        if(isset($request->rest_start_time)){
-            $str_rest_start_time = $attendance->date . ' ' . $request->rest_start_time;
-            $rest_start_time = new Carbon($str_rest_start_time);
-            $str_rest_start_time = $attendance->date . ' ' . $request->rest_start_time;
-            $rest_start_time = new Carbon($str_rest_start_time);
-
-        }else{
-
-        }
-        // restsの申請用テーブルも作成する？
-        AttendanceCorrectRequest::create([
-            'start_time' => $request->start_time,
-            'end_time' => $request->end_time,
-            'rest_start_time' => $request->rest_start_time,
-            'rest_end_time' => $request->rest_end_time,
             'reason' => $request->reason,
             'attendance_id' => $attendance->id
         ]);
 
-        return redirect('/attendance/{{$attendance->id}}');
+        for($i = 0; $i < count($attendance->rests); $i++){
+
+            // リクエスト内の各休憩時間の値にアクセスするためのキーの文字列を作成
+            $tmp_start = 'rest_start_time' . ($i+1);
+            $tmp_end = 'rest_end_time' . ($i+1);
+
+            // 文字列からDatetime型作成
+            $str_rest_start_time = $attendance->date . ' ' . $request->$tmp_start;
+            $str_rest_end_time = $attendance->date . ' ' . $request->$tmp_end;
+            $rest_start_time = new Carbon($str_rest_start_time);
+            $rest_end_time = new Carbon($str_rest_end_time);
+
+            
+            RestRequest::create([
+                'start_time' => $rest_start_time,
+                'end_time' => $rest_end_time,
+                'rest_id' => $attendance->rests[$i]->id,
+                'attendance_correct_request_id' => $attendance_correct_request->id
+            ]);
+        }
+
+        return redirect()->route('attendance.request', ['attendance_correct_request' => $attendance_correct_request->id]);
+    }
+
+    public function getStampCorrectRequest(AttendanceCorrectRequest $attendance_correct_request){
+        return view('stamp_correction_request', compact('attendance_correct_request'));
     }
 
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAttendanceCorrectRequestsTable extends Migration
+class CreateRestRequestsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateAttendanceCorrectRequestsTable extends Migration
      */
     public function up()
     {
-        Schema::create('attendance_correct_requests', function (Blueprint $table) {
+        Schema::create('rest_requests', function (Blueprint $table) {
             $table->id();
-            $table->boolean('status')->default(false);    
-            $table->string('reason');    
             $table->dateTime('start_time')->nullable();
             $table->dateTime('end_time')->nullable();
-            $table->unsignedBigInteger('attendance_id')->unique();
-            $table->foreign('attendance_id')->references('id')->on('attendances');
+            $table->foreignId('attendance_correct_request_id')->constrained();
+            $table->unsignedBigInteger('rest_id')->unique();
+            $table->foreign('rest_id')->references('id')->on('rests');
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ class CreateAttendanceCorrectRequestsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('attendance_correction_requests');
+        Schema::dropIfExists('rest_requests');
     }
 }

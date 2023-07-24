@@ -109,6 +109,7 @@ class StampCorrectionRequest extends FormRequest
 
             $start_datetime = Carbon::parse($this->date.' '.$this->start_time);
             $end_datetime = Carbon::parse($this->date.' '.$this->end_time);
+
             if ($end_datetime <= $start_datetime) {
                 $validator->errors()->add('end_small', '退勤時間は出勤時間より後にしてください。');
             }
@@ -119,20 +120,33 @@ class StampCorrectionRequest extends FormRequest
     
                 $rest_start_datetime = Carbon::parse($this->date.' '.$this->$rest_start);
                 $rest_end_datetime = Carbon::parse($this->date.' '.$this->$rest_end);
+
                 if ($rest_end_datetime <= $rest_start_datetime) {
                     $validator->errors()->add('rest_end_small', '休憩終了時間は休憩開始時間より後にしてください。');
                 }    
                 
                 if($i != 1){
                     $pre_end = 'rest_end_time' . ($i-1);
-                    $rest_start_datetime = Carbon::parse($this->date.' '.$this->$rest_start);
+                    // $rest_start_datetime = Carbon::parse($this->date.' '.$this->$rest_start);
                     $pre_rest_end_datetime = Carbon::parse($this->date.' '.$this->$pre_end);
                     if ($pre_rest_end_datetime > $rest_start_datetime) {
                         $validator->errors()->add('rest', '休憩時間が被っています。');
                     }
                 }
-            }
 
+                if($i != count($this->attendance->rests)){
+                    $next_start = 'rest_start_time' . ($i+1);
+                    $next_rest_start_datetime = Carbon::parse($this->date.' '.$this->$next_start);
+                    // $rest_end_datetime = Carbon::parse($this->date.' '.$this->$rest_end);
+                    if ($next_rest_start_datetime < $rest_end_datetime) {
+                        $validator->errors()->add('rest', '休憩時間が被っています。');
+                    }
+                }
+
+                if ( ($end_datetime < $rest_end_datetime) || ($start_datetime > $rest_start_datetime)) {
+                    $validator->errors()->add('rest_out', '休憩時間が出勤時間外です');
+                }
+            }
         });
     }
 

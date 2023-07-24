@@ -14,12 +14,14 @@ class AttendanceCorrectRequest extends Model
         'reason',
         'start_time',
         'end_time',
-        'rest_start_time',
-        'rest_end_time',
         'attendance_id'
     ];
 
     public function attendance(){
-        $this->belongsTo(Attendance::class);
+        return $this->belongsTo(Attendance::class);
+    }
+
+    public function restRequests(){
+        return $this->hasMany(RestRequest::class);
     }
 }
