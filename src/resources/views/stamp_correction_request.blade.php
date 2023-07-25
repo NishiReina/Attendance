@@ -36,7 +36,8 @@
     </table>
     @if(Auth::guard('admin')->check())
         @if($attendance_correct_request->status == false)
-            <form action="/admin/stamp_correction_request/approve/{$attendance_correct_request->id}">
+            <form action="/admin/stamp_correction_request/approve/{{$attendance_correct_request->id}}" method="post">
+                @csrf
                 <button class="btn">承認</button>
             </form>
         @else

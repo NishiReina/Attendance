@@ -27,7 +27,7 @@ Route::prefix('admin')->group(function () {
 
     Route::middleware('auth:admin')->group(function () {
         Route::get('home', [AdminController::class, 'index']);
-         Route::post('/stamp_correction_request/approve/{attendance_correct_request}',[StampCorrectionController::class, 'approveRequest'])->name('attendance.approve');
+        Route::post('/stamp_correction_request/approve/{attendance_correct_request}',[StampCorrectionController::class, 'approveRequest'])->name('attendance.approve');
     });
 });
 
