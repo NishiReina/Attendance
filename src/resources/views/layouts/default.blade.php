@@ -18,7 +18,7 @@
         <div class="header__right flex_row_center">
             <form action="/logout" method="post">
                 @csrf
-                <button>ログアウト</button>
+                <button class="btn">ログアウト</button>
             </form>
         </div>
         @endif

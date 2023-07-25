@@ -34,6 +34,14 @@
             <td class="request__td">{{ $attendance_correct_request->reason }}</td>
         </tr>
     </table>
+    @if(Auth::guard('admin')->check())
+        @if($attendance_correct_request->status == false)
+            <form action="/admin/stamp_correction_request/approve/{$attendance_correct_request->id}">
+                <button class="btn">承認</button>
+            </form>
+        @else
+            <p class="btn">承認済み</p>
+        @endif
+    @endisset
 </div>
-
 @endsection
