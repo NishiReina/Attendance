@@ -45,7 +45,7 @@ Route::middleware(['auth' | 'auth:admin'])->group(function () {
     Route::get('/attendance/list',[AttendanceController::class, 'getAttendancesList']);
     Route::get('/attendance/{attendance}',[AttendanceController::class, 'getAttendance'])->name('attendance.detail');
     Route::post('/attendance/{attendance}',[StampCorrectionController::class, 'stampCorrection']);
-    Route::get('/stamp_correction_request/list',[StampCorrectionController::class, 'getRequestList'])->name('attendance.request_list');
+    Route::get('/stamp_correction_request/list',[StampCorrectionController::class, 'getRequestList'])->middleware('requestApprove')->name('attendance.request_list');
     Route::get('/stamp_correction_request/detail/{attendance_correct_request}',[StampCorrectionController::class, 'getRequest'])->name('attendance.request');
    
 });
