@@ -8,6 +8,7 @@
 
 @section('content')
 <div class="detail flex_column_center">
+    <h1 class="title">勤怠詳細</h1>
     <form class="detail__form" action="/attendance/{{$attendance->id}}" method="post">
         @csrf
         @foreach ($errors->all() as $error)

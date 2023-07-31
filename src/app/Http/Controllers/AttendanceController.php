@@ -5,11 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\StampCorrectionRequest;
 use App\Models\Attendance;
-use App\Models\AttendanceCorrectRequest;
 use App\Models\Rest;
-use App\Models\RestRequest;
+
 
 class AttendanceController extends Controller
 {
@@ -73,7 +71,7 @@ class AttendanceController extends Controller
         }else{
             $ymd = Carbon::now()->startOfMonth();
         }
-        $days = $ymd->daysInMonth;
+
         $attendances = Attendance::getMonthAttendanceList(Auth::id(), $ymd);
         
         return view('attendance_list', compact('ymd', 'attendances'));

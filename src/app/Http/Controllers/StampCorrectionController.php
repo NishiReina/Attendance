@@ -55,18 +55,18 @@ class StampCorrectionController extends Controller
     }
 
     public function getRequest(AttendanceCorrectRequest $attendance_correct_request){
-        return view('stamp_correction_request', compact('attendance_correct_request'));
+        return view('request_form', compact('attendance_correct_request'));
     }
 
     public function getRequestList(Request $request){
         
-        if($request->user == 'admin'){
+        if(Auth::guard('admin')->check()){
             if($request->status == 'true'){
                 $requests = AttendanceCorrectRequest::where('status', true)->get();
             }else{
                 $requests = AttendanceCorrectRequest::where('status', false)->get();
             }
-        }else{
+        }else if(Auth::guard('web')->check()){
             $requests = array();
             if($request->status == 'true'){
                 $tmp_lists = AttendanceCorrectRequest::where('status', true)->get();
@@ -84,8 +84,9 @@ class StampCorrectionController extends Controller
                 }
             }
         }
+        $status = $request->status;
 
-        return view('request_list', compact('requests'));
+        return view('request_list', compact('requests', 'status'));
     }
 
     public function approveRequest(AttendanceCorrectRequest $attendance_correct_request){
@@ -105,6 +106,8 @@ class StampCorrectionController extends Controller
                 'endtime' => $attendance_correct_request->restRequests[$i]->end_time,
             ]);
         }
+
+        $attendance_correct_request->delete();
 
         return redirect()->route('attendance.detail', $attendance_correct_request->attendance->id);
     }

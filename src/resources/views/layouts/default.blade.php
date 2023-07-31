@@ -14,8 +14,20 @@
         <div class="header__left img">
             <img src="{{ asset('img/CoachTech_logo_White.png')}}" alt="コーチテックロゴ">
         </div>
-        @if(Auth::check())
+        @if(Auth::guard('admin')->check())
         <div class="header__right flex_row_center">
+            <a href="/admin/attendance/list">本日の出勤一覧</a>
+            <a href="/admin/staff/list">スタッフ一覧</a>
+            <a href="/stamp_correction_request/list?status=false">申請一覧</a>
+            <form action="/logout" method="post">
+                @csrf
+                <button class="btn">ログアウト</button>
+            </form>
+        </div>
+        @else
+        <div class="header__right flex_row_center">
+            <a href="/attendance/list">今月の出勤一覧</a>
+            <a href="/stamp_correction_request/list?status=false">申請一覧</a>
             <form action="/logout" method="post">
                 @csrf
                 <button class="btn">ログアウト</button>

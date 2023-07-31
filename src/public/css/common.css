@@ -35,6 +35,12 @@ img{
     align-items: center;
 }
 
+.flex_row_start{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
 .flex_column_center{
     display: flex;
     flex-direction: column;
@@ -49,6 +55,7 @@ img{
     padding: 0 20rem;
     position: fixed;
     top: 0;
+    color: #fff;
 }
 
 .header__left{
@@ -76,4 +83,21 @@ img{
     cursor: pointer;
     opacity: 0.8;
     transition: .3s;
+}
+
+.title{
+    width: 100%;
+    font-size: 20rem;
+    text-align: left;
+    position: relative;
+    padding-left: 15rem;
+    margin-bottom: 30rem;
+}
+
+.title::before{
+    content: '|';
+    width: 2rem;
+    position: absolute;
+    top: 0;
+    left: 0;;
 }

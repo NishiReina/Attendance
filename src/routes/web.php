@@ -26,7 +26,10 @@ Route::prefix('admin')->group(function () {
     Route::post('login', [LoginController::class, 'store']);
 
     Route::middleware('auth:admin')->group(function () {
-        Route::get('home', [AdminController::class, 'index']);
+        Route::get('/staff/list', [AdminController::class, 'getStaffList']);
+        Route::get('/attendance/list', [AdminController::class, 'getDayAttendance']);
+        Route::get('/attendance/staff/{id}', [AdminController::class, 'getAttendancesList']);
+        Route::get('/stamp_correction_request/list',[StampCorrectionController::class, 'getRequestList'])->name('attendance.request_list');
         Route::post('/stamp_correction_request/approve/{attendance_correct_request}',[StampCorrectionController::class, 'approveRequest'])->name('attendance.approve');
     });
 });
@@ -38,14 +41,14 @@ Route::middleware('auth')->group(function () {
     Route::post('/attendance/end/{attendance}', [AttendanceController::class, 'end']);
     Route::post('/attendance/rest_start/{id}', [AttendanceController::class, 'startRest']);
     Route::post('/attendance/rest_end/{rest}', [AttendanceController::class, 'endRest']);
+    Route::post('/attendance/{attendance}',[StampCorrectionController::class, 'stampCorrection']);
    
 });
 
-Route::middleware(['auth' | 'auth:admin'])->group(function () {
+Route::middleware(['auth:web,admin'])->group(function () {
     Route::get('/attendance/list',[AttendanceController::class, 'getAttendancesList']);
     Route::get('/attendance/{attendance}',[AttendanceController::class, 'getAttendance'])->name('attendance.detail');
-    Route::post('/attendance/{attendance}',[StampCorrectionController::class, 'stampCorrection']);
-    Route::get('/stamp_correction_request/list',[StampCorrectionController::class, 'getRequestList'])->middleware('requestApprove')->name('attendance.request_list');
+    Route::get('/stamp_correction_request/list',[StampCorrectionController::class, 'getRequestList'])->name('attendance.request_list');
     Route::get('/stamp_correction_request/detail/{attendance_correct_request}',[StampCorrectionController::class, 'getRequest'])->name('attendance.request');
    
 });

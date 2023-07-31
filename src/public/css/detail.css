@@ -1,3 +1,35 @@
+.detail__flame{
+    width: 800rem;
+    margin: 100rem auto;
+}
+
 .detail{
-    padding: 100rem 0;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 15rem;
+    color: #656565;
+}
+
+.detail__table{
+    width: 100%;
+    table-layout: auto;
+    text-align: center;
+    border-collapse: collapse;
+    border-spacing: 0px 8rem;
+}
+
+.detail__tr{
+    border-bottom: 1px solid #E1E1E1;
+}
+
+.detail__tr:last-child{
+    border-bottom: none;
+}
+
+.detail__th{
+    padding: 20rem 20rem;
+}
+
+.detail__td{
+    padding: 10rem 20rem;
 }
