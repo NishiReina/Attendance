@@ -1,0 +1,46 @@
+.attendance{
+    width: 600rem;
+    height: calc(100vh - 60rem);
+    margin: 0 auto;
+    padding: 50rem 0;
+}
+
+.attendance__status{
+    margin-bottom: 30rem;
+}
+
+.status{
+    background-color: #C8C8C8;
+    color: #696969;
+    font-weight: bold;
+    padding: 10rem 20rem;
+    text-align: center;
+    border-radius: 30rem;
+}
+
+.date{
+    font-size: 30rem;
+    font-weight: normal;
+    text-align: center;
+    margin-bottom: 40rem;
+}
+
+.time{
+    font-size: 40rem;
+    text-align: center;
+    margin-bottom: 50rem;
+}
+
+.flex__attendance{
+    width: 380rem;
+    margin: 0 auto;
+}
+
+.btn{
+    width: 150rem;
+}
+
+.btn--white{
+    background-color: #fff;
+    color: #000;
+}

@@ -1,0 +1,79 @@
+.list__flame{
+    width: 800rem;
+    margin: 100rem auto;
+}
+
+.pagenation{
+    width: 100%;
+    height: 45rem;
+    padding: 0 20rem;
+    margin-bottom: 30rem;
+    background-color: #fff;
+    border-radius: 15rem;
+}
+
+.lists{
+    width: 100%;
+    background-color: #fff;
+    border-radius: 15rem;
+    color: #656565;
+}
+
+.list__table{
+    width: 100%;
+    table-layout: auto;
+    text-align: center;
+    border-collapse: collapse;
+    border-spacing: 0px 8rem;
+}
+
+.list__tr{
+    border-bottom: 1px solid #E1E1E1;
+}
+
+.list__tr:last-child{
+    border-bottom: none;
+}
+
+.list__th{
+    padding: 12rem 20rem;
+}
+
+.list__td{
+    padding: 10rem 20rem;
+}
+
+.status{
+    width: 100%;
+    padding: 0 0 15rem 50rem;
+    border-bottom: 2px solid #000;
+    margin-bottom: 30rem;
+}
+
+.status__li{
+    margin-right: 100rem;
+}
+
+.status--bold{
+    font-weight: bold;
+}
+
+.detail__th{
+    padding: 20rem 20rem;
+}
+
+.detail__td{
+    padding: 20rem 20rem;
+}
+
+.detail__td:first-child{
+    position: relative;
+}
+
+.detail__td:first-child::after{
+    content: "~";
+    width: 5rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
