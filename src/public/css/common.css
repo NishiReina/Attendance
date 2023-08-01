@@ -62,8 +62,12 @@ img{
     width: 250rem;
 }
 
-.header_right{
+.header__right{
     color: #fff;
+}
+
+.header__item{
+    margin: 0 15rem;
 }
 
 .btn{
@@ -91,7 +95,7 @@ img{
     text-align: left;
     position: relative;
     padding-left: 15rem;
-    margin-bottom: 30rem;
+    margin-bottom: 50rem;
 }
 
 .title::before{

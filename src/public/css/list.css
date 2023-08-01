@@ -1,6 +1,6 @@
 .list__flame{
     width: 800rem;
-    margin: 100rem auto;
+    margin: 100rem auto 50rem;
 }
 
 .pagenation{
@@ -10,6 +10,23 @@
     margin-bottom: 30rem;
     background-color: #fff;
     border-radius: 15rem;
+}
+
+.pagenation__btn{
+    color: #656565;
+    font-weight: bold;
+}
+
+.pagenation__btn:visited{
+    color: #656565;
+}
+
+.pagenation__arrow{
+    margin: 0 5rem;
+}
+
+.show__month{
+    font-weight: bold;
 }
 
 .lists{
@@ -58,6 +75,8 @@
     font-weight: bold;
 }
 
+/* request_form.blade.php, detail.blade.php用 */
+
 .detail__th{
     padding: 20rem 20rem;
 }
@@ -76,4 +95,28 @@
     position: absolute;
     top: 0;
     left: 0;
+}
+
+/* detail.blade.php用 */
+
+.detail__form{
+    width: 100%;
+}
+
+input[type="date"]{
+    border: none;
+    outline: none;
+}
+
+input[type="time"]{
+    padding: 5rem 8rem;
+}
+
+input[type="text"]{
+    padding: 5rem 8rem;
+}
+
+.detail__btn{
+    width: 100rem;
+    margin: 30rem 0 0 auto;
 }

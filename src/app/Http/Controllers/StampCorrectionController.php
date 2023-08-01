@@ -107,7 +107,7 @@ class StampCorrectionController extends Controller
             ]);
         }
 
-        $attendance_correct_request->delete();
+        // $attendance_correct_request->delete();
 
         return redirect()->route('attendance.detail', $attendance_correct_request->attendance->id);
     }

@@ -33,3 +33,9 @@
 .detail__td{
     padding: 10rem 20rem;
 }
+
+
+/* detail.blade.php用 */
+.detail__form{
+    width: 100%;
+}
