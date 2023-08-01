@@ -25,21 +25,21 @@
         @if($status["status"] == "non_work")
             <form action="/attendance/start" method="post">
                 @csrf
-                <button class="btn">出勤</button>
+                <button class="attendance__btn btn">出勤</button>
             </form>
         @elseif($status["status"] == "at_work")
             <form action="/attendance/end/{{$status['key']}}" method="post">
                 @csrf
-                <button class="btn">退勤</button>
+                <button class="attendance__btn btn">退勤</button>
             </form>
             <form action="/attendance/rest_start/{{$status['key']}}" method="post">
                 @csrf
-                <button class="btn btn--white">休憩入</button>
+                <button class="attendance__btn btn btn--white">休憩入</button>
             </form>
         @elseif($status["status"] == "rest")
             <form action="/attendance/rest_end/{{$status['key']}}" method="post">
                 @csrf
-                <button class="btn btn--white">休憩戻</button>
+                <button class="attendance__btn btn btn--white">休憩戻</button>
             </form>
         @else
             <p>お疲れ様でした</p>
