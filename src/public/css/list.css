@@ -120,3 +120,20 @@ input[type="text"]{
     width: 100rem;
     margin: 30rem 0 0 auto;
 }
+
+/* request__form用 */
+
+.request__btn{
+    margin: 30rem 0 0 auto;
+    width: 100rem;
+
+}
+
+.disable{
+    letter-spacing: .1em;
+    opacity: .5;
+}
+
+.disable:hover{
+    opacity: .5;
+}

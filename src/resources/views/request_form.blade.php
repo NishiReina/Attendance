@@ -39,12 +39,12 @@
     </div>
     @if(Auth::guard('admin')->check())
         @if($attendance_correct_request->status == false)
-            <form action="/admin/stamp_correction_request/approve/{{$attendance_correct_request->id}}" method="post">
+            <form class="request__btn btn" action="/admin/stamp_correction_request/approve/{{$attendance_correct_request->id}}" method="post">
                 @csrf
-                <button class="btn">承認</button>
+                <button>承認</button>
             </form>
         @else
-            <p class="btn">承認済み</p>
+            <p class="request__btn btn disable">承認済み</p>
         @endif
     @endif
 </div>

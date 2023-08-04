@@ -8,7 +8,7 @@
 
 @section('content')
 <div class="list__flame flex_column_center">
-    <h1 class="list__title">スタッフ一覧</h1>
+    <h1 class="title">スタッフ一覧</h1>
    <div class="lists">
     <table class="list__table">
         <tr class="list__tr">

@@ -32,12 +32,12 @@
             </tr>
             @foreach($requests as $request)
             <tr class="list__tr">
-                    <td class="list__td">{{$request->status}}</td>
+                    <td class="list__td">{{ $request->status == 1 ? '承認済み' : '承認待ち' }}</td>
                     <td class="list__td">{{$request->attendance->user->name}}</td>
                     <td class="list__td">{{ MyFunc::date_format($request->attendance->date)}}</td>
                     <td class="list__td">{{$request->reason}}</td>
                     <td class="list__td">{{ MyFunc::date_format($request->created_at)}}</td>
-                    <td class="list__td"><a href="/stamp_correction_request/detail/{{$request->attendance->id}}">詳細</a></td>
+                    <td class="list__td"><a href="/stamp_correction_request/detail/{{$request->id}}">詳細</a></td>
             </tr> 
             @endforeach
         </table>
