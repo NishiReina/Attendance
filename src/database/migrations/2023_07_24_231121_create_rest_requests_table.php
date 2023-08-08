@@ -18,8 +18,8 @@ class CreateRestRequestsTable extends Migration
             $table->dateTime('start_time')->nullable();
             $table->dateTime('end_time')->nullable();
             $table->foreignId('attendance_correct_request_id')->constrained();
-            $table->unsignedBigInteger('rest_id')->unique();
-            $table->foreign('rest_id')->references('id')->on('rests');
+            // $table->unsignedBigInteger('rest_id')->unique();
+            // $table->foreign('rest_id')->references('id')->on('rests');
             $table->timestamps();
         });
     }

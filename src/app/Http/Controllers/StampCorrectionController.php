@@ -46,7 +46,7 @@ class StampCorrectionController extends Controller
             RestRequest::create([
                 'start_time' => $rest_start_time,
                 'end_time' => $rest_end_time,
-                'rest_id' => $attendance->rests[$i]->id,
+                // 'rest_id' => $attendance->rests[$i]->id,
                 'attendance_correct_request_id' => $attendance_correct_request->id
             ]);
         }

@@ -17,10 +17,6 @@ use App\Http\Controllers\StampCorrectionController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::prefix('admin')->group(function () {
     Route::get('login', [LoginController::class, 'create'])->name('admin.login');
     Route::post('login', [LoginController::class, 'store']);
@@ -29,13 +25,12 @@ Route::prefix('admin')->group(function () {
         Route::get('/staff/list', [AdminController::class, 'getStaffList']);
         Route::get('/attendance/list', [AdminController::class, 'getDayAttendance']);
         Route::get('/attendance/staff/{id}', [AdminController::class, 'getAttendancesList']);
-        Route::get('/stamp_correction_request/list',[StampCorrectionController::class, 'getRequestList'])->name('attendance.request_list');
+        // Route::get('/stamp_correction_request/list',[StampCorrectionController::class, 'getRequestList'])->name('attendance.request_list');
         Route::post('/stamp_correction_request/approve/{attendance_correct_request}',[StampCorrectionController::class, 'approveRequest'])->name('attendance.approve');
     });
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('home', [AdminController::class, 'index']);
     Route::get('/attendance', [AttendanceController::class, 'top']);
     Route::post('/attendance/start', [AttendanceController::class, 'start']);
     Route::post('/attendance/end/{attendance}', [AttendanceController::class, 'end']);
