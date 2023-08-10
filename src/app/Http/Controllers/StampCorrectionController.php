@@ -103,7 +103,7 @@ class StampCorrectionController extends Controller
         for($i = 0; $i < count($attendance_correct_request->restRequests); $i++ ){
             $attendance_correct_request->attendance->rests[$i]->update([
                 'start_time' => $attendance_correct_request->restRequests[$i]->start_time,
-                'endtime' => $attendance_correct_request->restRequests[$i]->end_time,
+                'end_time' => $attendance_correct_request->restRequests[$i]->end_time,
             ]);
         }
 
