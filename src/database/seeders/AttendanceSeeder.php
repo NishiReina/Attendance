@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Attendance;
+use Carbon\Carbon;
 
 class AttendanceSeeder extends Seeder
 {
@@ -14,9 +15,10 @@ class AttendanceSeeder extends Seeder
      */
     public function run()
     {
+        $today = Carbon::today();
         Attendance::create([
-            'date' => "2023-07-04",
-            "start_time" => "00:33:32",
+            'date' => $today,
+            "start_time" => $today,
             "user_id" => 1
         ]);
 
