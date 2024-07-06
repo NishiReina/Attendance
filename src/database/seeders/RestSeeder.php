@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Rest;
+use Carbon\Carbon;
 
 class RestSeeder extends Seeder
 {
@@ -14,15 +15,12 @@ class RestSeeder extends Seeder
      */
     public function run()
     {
+        $today = Carbon::today();
         Rest::create([
-            "start_time" => "00:33:32",
-            "end_time" => "00:33:35",
+            "start_time" => $today->addHour(),
+            "end_time" =>$today->addHour()->addMinutes(5),
             "attendance_id" => 1
         ]);
 
-        // Rest::create([
-        //     "start_time" => "00:37:32",
-        //     "attendance_id" => 1
-        // ]);
     }
 }
