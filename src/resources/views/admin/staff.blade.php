@@ -13,12 +13,14 @@
     <table class="list__table">
         <tr class="list__tr">
             <th class="list__th">名前</th>
-            <th class="list__th">出勤一覧</th>
+            <th class="list__th">メールアドレス</th>
+            <th class="list__th">月次勤怠</th>
         </tr>
         @foreach($users as $user)
         <tr class="list__tr">
             <td class="list__td">{{ $user->name }}</td>
-            <td class="list__td"><a href="/admin/attendance/staff/{{$user->id}}">詳細</a></td>
+            <td class="list__td">{{ $user->email }}</td>
+            <td class="list__td list__td--bold"><a href="/admin/attendance/staff/{{$user->id}}">詳細</a></td>
         </tr>
         @endforeach
 

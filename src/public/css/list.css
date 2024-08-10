@@ -60,6 +60,11 @@
     padding: 10rem 20rem;
 }
 
+.list__td--bold{
+    font-weight: bold;
+    color: #000
+}
+
 .status{
     width: 100%;
     padding: 0 0 15rem 50rem;
