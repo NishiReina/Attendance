@@ -16,7 +16,7 @@
         </div>
         @if(Auth::guard('admin')->check())
         <div class="header__right flex_row_center">
-            <a class="header__item" href="/admin/attendance/list">本日の出勤一覧</a>
+            <a class="header__item" href="/admin/attendance/list">勤怠一覧</a>
             <a class="header__item" href="/admin/staff/list">スタッフ一覧</a>
             <a class="header__item" href="/stamp_correction_request/list?status=false">申請一覧</a>
             <form action="/logout" method="post">
@@ -26,7 +26,7 @@
         </div>
         @else
         <div class="header__right flex_row_center">
-            <a class="header__item" href="/attendance/list">今月の出勤一覧</a>
+            <a class="header__item" href="/attendance/list">勤怠一覧</a>
             <a class="header__item" href="/stamp_correction_request/list?status=false">申請一覧</a>
             <form class="header__item" action="/logout" method="post">
                 @csrf
