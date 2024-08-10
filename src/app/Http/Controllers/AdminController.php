@@ -40,7 +40,8 @@ class AdminController extends Controller
         }
 
         $attendances = Attendance::getMonthAttendanceList($id, $ymd);
+        $staff_name = User::find($id)->name;
         
-        return view('attendance_list', compact('id', 'ymd', 'attendances'));
+        return view('attendance_list', compact('id', 'ymd', 'attendances', 'staff_name'));
     }
 }
