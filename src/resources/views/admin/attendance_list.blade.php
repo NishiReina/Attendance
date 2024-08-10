@@ -8,7 +8,7 @@
 
 @section('content')
 <div class="list__flame flex_column_center">
-    <h1 class="title">勤怠一覧</h1>
+    <h1 class="title">{{$ymd->format('Y年n月j日')}}の勤怠</h1>
    <div class="pagenation flex_row_space-between">
         <a href='/admin/attendance/list/?day={{$ymd->copy()->subDay()->format("Y-m-d")}}' class="pagenation__btn"><span class="pagenation__arrow"><</span>前日</a>
         <p class="show__month">{{$ymd->format('Y年n月j日')}}</p>
