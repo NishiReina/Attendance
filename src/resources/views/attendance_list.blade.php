@@ -8,14 +8,15 @@
 
 @section('content')
 <div class="list__flame flex_column_center">
-    <h1 class="title">勤怠一覧</h1>
     @if(Auth::guard('admin')->check())
+    <h1 class="title">{{$staff_name}}さんの勤怠</h1>
     <div class="pagenation flex_row_space-between">
         <a href='/admin/attendance/staff/{{$id}}?month={{$ymd->copy()->subMonthNoOverflow()->format("Y-m")}}' class="pagenation__btn"><span class="pagenation__arrow"><</span>前月</a>
         <p class="show__month">{{$ymd->format('Y年n月')}}</p>
         <a href='/admin/attendance/staff/{{$id}}?month={{$ymd->copy()->addMonthNoOverflow()->format("Y-m")}}' class="pagenation__btn">後月<span class="pagenation__arrow">></span></a>
    </div>
     @else
+    <h1 class="title">勤怠一覧</h1>
    <div class="pagenation flex_row_space-between">
         <a href='/attendance/list/?month={{$ymd->copy()->subMonthNoOverflow()->format("Y-m")}}' class="pagenation__btn"><span class="pagenation__arrow"><</span>前月</a>
         <p class="show__month">{{$ymd->format('Y年n月')}}</p>
