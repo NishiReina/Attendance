@@ -18,7 +18,6 @@ class AttendanceController extends Controller
         $time = $today->format("H:i");
 
         $status = Attendance::attendanceStatus();
-        // dd($status["status"]);
         return view('attendance', compact('date', 'time', 'status'));
     }
 

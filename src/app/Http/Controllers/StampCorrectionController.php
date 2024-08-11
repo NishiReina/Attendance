@@ -62,21 +62,21 @@ class StampCorrectionController extends Controller
         
         if(Auth::guard('admin')->check()){
             if($request->status == 'true'){
-                $requests = AttendanceCorrectRequest::where('status', true)->get();
+                $requests = AttendanceCorrectRequest::where('status', 1)->get();
             }else{
-                $requests = AttendanceCorrectRequest::where('status', false)->get();
+                $requests = AttendanceCorrectRequest::where('status', 0)->get();
             }
         }else if(Auth::guard('web')->check()){
             $requests = array();
             if($request->status == 'true'){
-                $tmp_lists = AttendanceCorrectRequest::where('status', true)->get();
+                $tmp_lists = AttendanceCorrectRequest::where('status', 1)->get();
                 foreach($tmp_lists as $tmp_list){
                     if($tmp_list->attendance->user->id == Auth::id()){
                         array_push($requests, $tmp_list);
                     }
                 }
             }else{
-                $tmp_lists = AttendanceCorrectRequest::where('status', false)->get();
+                $tmp_lists = AttendanceCorrectRequest::where('status', 0)->get();
                 foreach($tmp_lists as $tmp_list){
                     if($tmp_list->attendance->user->id == Auth::id()){
                         array_push($requests, $tmp_list);
@@ -92,7 +92,7 @@ class StampCorrectionController extends Controller
     public function approveRequest(AttendanceCorrectRequest $attendance_correct_request){
 
         $attendance_correct_request->update([
-            'status' => true
+            'status' => 1
         ]);
 
         $attendance_correct_request->attendance->update([
@@ -106,8 +106,6 @@ class StampCorrectionController extends Controller
                 'end_time' => $attendance_correct_request->restRequests[$i]->end_time,
             ]);
         }
-
-        // $attendance_correct_request->delete();
 
         return redirect()->route('attendance.detail', $attendance_correct_request->attendance->id);
     }

@@ -50,8 +50,10 @@
             </tr>
         </table>
         </div>
-        @if(empty($attendance->attendanceCorrectRequest))
-        <button class="detail__btn btn">修正</button>
+        @if($attendance->isPendingRequests())
+            <p class="detail__caution">*承認待ちのため修正できません</p>
+        @else
+            <button class="detail__btn btn">修正</button>
         @endif
     </form>
 </div>
