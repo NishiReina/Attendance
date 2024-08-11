@@ -126,6 +126,12 @@ input[type="text"]{
     margin: 30rem 0 0 auto;
 }
 
+.detail__caution{
+    color: red;
+    text-align: right;
+    margin-top: 30rem;
+}
+
 /* request__form用 */
 
 .request__btn{

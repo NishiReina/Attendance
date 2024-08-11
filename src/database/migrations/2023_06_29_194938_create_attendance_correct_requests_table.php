@@ -6,6 +6,13 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateAttendanceCorrectRequestsTable extends Migration
 {
+
+    /**
+     * status
+     *  0: 申請中
+     *  1: 承認済み 
+     */
+
     /**
      * Run the migrations.
      *
@@ -15,12 +22,13 @@ class CreateAttendanceCorrectRequestsTable extends Migration
     {
         Schema::create('attendance_correct_requests', function (Blueprint $table) {
             $table->id();
-            $table->boolean('status')->default(false);    
+            $table->smallInteger('status')->default(0);    
             $table->string('reason');    
             $table->dateTime('start_time')->nullable();
             $table->dateTime('end_time')->nullable();
-            $table->unsignedBigInteger('attendance_id')->unique();
-            $table->foreign('attendance_id')->references('id')->on('attendances');
+            // $table->unsignedBigInteger('attendance_id')->unique();
+            // $table->foreign('attendance_id')->references('id')->on('attendances');
+            $table->foreignId('attendance_id')->constrained();
             $table->timestamps();
         });
     }

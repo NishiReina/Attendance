@@ -27,8 +27,18 @@ class Attendance extends Model
         return $this->hasMany(Rest::class);
     }
 
-    public function attendanceCorrectRequest(){
-        return $this->hasOne(AttendanceCorrectRequest::class);
+    public function attendanceCorrectRequests(){
+        return $this->hasMany(AttendanceCorrectRequest::class);
+    }
+
+    public function isPendingRequests(){
+        $attendanceCorrectRequests = $this->hasMany(AttendanceCorrectRequest::class)->get();
+
+        $isPendingRequests = $attendanceCorrectRequests->contains(function($request) {
+            return $request->status === 0;
+        });
+
+        return $isPendingRequests;
     }
 
     public static function attendanceStatus(){
