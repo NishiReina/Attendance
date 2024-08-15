@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use App\Library\CsvFunc;
 
 class Attendance extends Model
 {
@@ -87,12 +88,32 @@ class Attendance extends Model
             $attendance = Attendance::with('user')->where('user_id',$user_id)->whereDate('created_at', $date)->first();
             if(isset($attendance) && isset($attendance->end_time)){
                 $month_attendances[$i] = $attendance;
+                // array_push($month_attendances, [$date, $attendance->start_time, $attendance->end_time, self::formatTime($attendance->sumRestTime()), self::formatTime( $attendance->sumWorkingHours()) ]);
             }else{
                 $month_attendances[$i] = "";
+                // array_push($month_attendances, [$date, "", "", "", ""]);
             }
         }
 
         return $month_attendances;
+    }
+
+    public static function putCsvMonthAttendanceList($user_id, $ymd){
+
+        $header = ['日付', '出勤', '退勤', '休憩', '合計'];
+        $month_attendances = array();
+        for($i = 1; $i <= $ymd->daysInMonth; $i++){
+            $date = Carbon::createMidnightDate($ymd->year, $ymd->month, $i);
+            $attendance = Attendance::with('user')->where('user_id',$user_id)->whereDate('created_at', $date)->first();
+            if(isset($attendance) && isset($attendance->end_time)){
+                array_push($month_attendances, [$date, $attendance->start_time, $attendance->end_time, self::formatTime($attendance->sumRestTime()), self::formatTime( $attendance->sumWorkingHours()) ]);
+            }else{
+                array_push($month_attendances, [$date, "", "", "", ""]);
+            }
+        }
+
+        CsvFunc::putCsv($header, $month_attendances);
+        return;
     }
 
     public function sumWorkingHours(){

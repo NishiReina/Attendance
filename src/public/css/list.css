@@ -132,6 +132,17 @@ input[type="text"]{
     margin-top: 30rem;
 }
 
+.csv__wrap{
+    width: 100%;
+    margin-top: 30rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.csv__btn{
+    width: 100rem;
+}
+
 /* request__form用 */
 
 .request__btn{
