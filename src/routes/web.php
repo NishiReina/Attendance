@@ -25,6 +25,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/staff/list', [AdminController::class, 'getStaffList']);
         Route::get('/attendance/list', [AdminController::class, 'getDayAttendance']);
         Route::get('/attendance/staff/{id}', [AdminController::class, 'getAttendancesList']);
+        Route::post('/attendance/staff/{staff_id}/{ymd}', [AdminController::class, 'putCsvAttendancesList']);
         // Route::get('/stamp_correction_request/list',[StampCorrectionController::class, 'getRequestList'])->name('attendance.request_list');
         Route::post('/stamp_correction_request/approve/{attendance_correct_request}',[StampCorrectionController::class, 'approveRequest'])->name('attendance.approve');
     });
