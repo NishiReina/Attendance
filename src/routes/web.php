@@ -37,7 +37,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/attendance/end/{attendance}', [AttendanceController::class, 'end']);
     Route::post('/attendance/rest_start/{id}', [AttendanceController::class, 'startRest']);
     Route::post('/attendance/rest_end/{rest}', [AttendanceController::class, 'endRest']);
-    Route::post('/attendance/{attendance}',[StampCorrectionController::class, 'stampCorrection']);
    
 });
 
@@ -46,6 +45,6 @@ Route::middleware(['auth:web,admin'])->group(function () {
     Route::get('/attendance/{attendance}',[AttendanceController::class, 'getAttendance'])->name('attendance.detail');
     Route::get('/stamp_correction_request/list',[StampCorrectionController::class, 'getRequestList'])->name('attendance.request_list');
     Route::get('/stamp_correction_request/detail/{attendance_correct_request}',[StampCorrectionController::class, 'getRequest'])->name('attendance.request');
-   
+    Route::post('/attendance/{attendance}',[StampCorrectionController::class, 'stampCorrection']);
 });
 
