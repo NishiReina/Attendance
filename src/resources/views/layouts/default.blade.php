@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/common.css')}}">
     @stack('css')
 </head>
+
 <body>
     <header class="header flex_row_space-between">
         <div class="header__left img">
@@ -26,6 +28,7 @@
         </div>
         @else
         <div class="header__right flex_row_center">
+            <a class="header__item" href="/attendance">勤怠</a>
             <a class="header__item" href="/attendance/list">勤怠一覧</a>
             <a class="header__item" href="/stamp_correction_request/list?status=false">申請一覧</a>
             <form class="header__item" action="/logout" method="post">
@@ -37,4 +40,5 @@
     </header>
     @yield('content')
 </body>
+
 </html>

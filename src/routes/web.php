@@ -41,6 +41,8 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware(['auth:web,admin'])->group(function () {
+    Route::post('logout', [LoginController::class, 'destroy']);
+
     Route::get('/attendance/list',[AttendanceController::class, 'getAttendancesList']);
     Route::get('/attendance/{attendance}',[AttendanceController::class, 'getAttendance'])->name('attendance.detail');
     Route::get('/stamp_correction_request/list',[StampCorrectionController::class, 'getRequestList'])->name('attendance.request_list');
