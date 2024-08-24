@@ -26,7 +26,7 @@ class StampCorrectionController extends Controller
         $str_end_time = $attendance->date . ' ' . $request->end_time;
         $end_time = new Carbon($str_end_time);
 
-        if(Auth::check('admin')){
+        if(Auth::guard('admin')->check()){
             $attendance->update([
                 'start_time' => $start_time,
                 'end_time' => $end_time,
